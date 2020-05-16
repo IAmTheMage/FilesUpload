@@ -21,3 +21,10 @@ Factory.blueprint("App/Models/User", (faker) => {
     password: faker.password(),
   };
 });
+
+Factory.blueprint("App/Models/File", (faker) => {
+  return {
+    name: faker.sentence(),
+    type: faker.sentence(),
+  };
+});

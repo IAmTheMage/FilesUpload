@@ -72,9 +72,13 @@ class UserController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
-   * @param {View} ctx.view
    */
-  async show({ params, request, response, view }) {}
+  async show({ params, request, response }) {
+    const { id } = params;
+    const user = await User.find(id);
+    user.files = await user.files().fetch();
+    return response.json(user);
+  }
 
   /**
    * Render a form to update an existing user.

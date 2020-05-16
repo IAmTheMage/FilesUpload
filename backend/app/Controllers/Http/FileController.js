@@ -9,6 +9,7 @@ const File = use("App/Models/File");
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
+/** @typedef {import('@adonisjs/auth/src/Schemes/Session')} AuthSession */
 
 /**
  * Resourceful controller for interacting with files
@@ -43,8 +44,9 @@ class FileController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
+   * @param {AuthSession} ctx.auth
    */
-  async store({ request, response }) {
+  async store({ request, response, auth }) {
     const file = request.file("file", {
       size: "2mb",
     });
@@ -59,6 +61,8 @@ class FileController {
       name: filename,
       type: file.subtype,
     });
+    const user_id = auth.user.id;
+    await createdFile.user().attach([user_id]);
     return response.status(201).json({ file: createdFile });
   }
 

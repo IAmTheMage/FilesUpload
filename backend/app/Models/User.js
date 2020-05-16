@@ -38,6 +38,10 @@ class User extends Model {
   static get hidden() {
     return ["password"];
   }
+
+  files() {
+    return this.belongsToMany("App/Models/File").pivotTable("user_file");
+  }
 }
 
 module.exports = User;
