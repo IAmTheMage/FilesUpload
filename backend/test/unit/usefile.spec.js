@@ -16,5 +16,5 @@ test("be able to show user and he files", async ({ assert, client }) => {
   await user.files().attach(filesId);
   const response = await client.get(`/user/${user.id}`).loginVia(user).end();
   response.assertStatus(200);
-  assert.exists(response.body.files);
+  assert.exists(response.body);
 });

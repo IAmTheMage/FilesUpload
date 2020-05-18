@@ -1,4 +1,5 @@
 "use strict";
+const crypto = require("crypto");
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use("Model");
@@ -15,6 +16,7 @@ class User extends Model {
      * it to the database.
      */
     this.addHook("beforeSave", async (userInstance) => {
+      userInstance.token = crypto.randomBytes(16).toString("HEX");
       if (userInstance.dirty.password) {
         userInstance.password = await Hash.make(userInstance.password);
       }

@@ -18,7 +18,9 @@ const Route = use("Route");
 
 Route.post("/user", "UserController.store");
 Route.get("/user/:id", "UserController.show").middleware("auth");
+Route.get("/v/:token", "UserController.verifyAccount");
 
 Route.post("/login", "SessionController.store");
 
 Route.post("/files", "FileController.store").middleware("auth");
+Route.get("/files/:file", "FileController.show");

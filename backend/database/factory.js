@@ -14,11 +14,14 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use("Factory");
 
+const crypto = require("crypto");
+
 Factory.blueprint("App/Models/User", (faker) => {
   return {
     username: faker.username(),
     email: faker.email(),
     password: faker.password(),
+    token: crypto.randomBytes(16).toString("HEX"),
   };
 });
 

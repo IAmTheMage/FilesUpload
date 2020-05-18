@@ -13,6 +13,7 @@ test("be able to login in new session by email", async ({ assert, client }) => {
     email: "ga@gmail.com",
     password: "123456",
   });
+  const validUser = await client.get(`/v/${user.token}`).end();
   const response = await client
     .post("/login")
     .send({
