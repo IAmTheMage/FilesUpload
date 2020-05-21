@@ -16,7 +16,7 @@ import {
   NotHaveFilesDescription,
 } from "./styles";
 import logo from "../../assets/images/cogwheel.png";
-import api from "../../services/api";
+import DragAndDropFileUpload from "../../components/DragAndDropFileUpload";
 
 const Feed: React.FC = () => {
   const dispatcher = useDispatch();
@@ -70,6 +70,7 @@ const Feed: React.FC = () => {
 
           {haveData && state?.files.length > 0 && <p>Tem files</p>}
         </FilesContainer>
+        <DragAndDropFileUpload />
       </ContentContainer>
     </Container>
   );
