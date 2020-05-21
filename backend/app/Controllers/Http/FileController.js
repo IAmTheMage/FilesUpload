@@ -55,6 +55,11 @@ class FileController {
    */
   async show({ params, request, response, view }) {
     const { file } = params;
+    if (file === "default") {
+      return response.download(
+        Helpers.tmpPath(`default/amplifica_banner_blog-4.jpg`)
+      );
+    }
     return response.download(Helpers.tmpPath(`files/${file}`));
   }
 }

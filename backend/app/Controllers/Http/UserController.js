@@ -41,7 +41,7 @@ class UserController {
       types: ["image"],
     });
     if (!profileImg) {
-      data.profile_image = Helpers.tmpPath("default/amplifica_banner_blog-4");
+      data.profile_image = "default";
     } else {
       const filename = `${Date.now()}-${profileImg.clientName}`;
       await profileImg.move(Helpers.tmpPath("uploads"), {
@@ -68,9 +68,9 @@ class UserController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async show({ params, request, response }) {
-    const { id } = params;
-    const user = await User.query().with("files").fetch();
+  async show({ params, request, response, auth }) {
+    const { id } = auth.user;
+    const user = await User.query().where("id", id).with("files").first();
     return response.json(user);
   }
 

@@ -1,10 +1,17 @@
 import React from "react";
+import { Provider } from "react-redux";
+import Router from "./routes";
+import GlobalStyle from "./globalStyle";
+import store from "./redux/store";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello adonisjs</h1>
-    </div>
+    <>
+      <GlobalStyle />
+      <Provider store={store}>
+        <Router></Router>
+      </Provider>
+    </>
   );
 }
 
