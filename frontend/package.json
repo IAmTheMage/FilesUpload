@@ -18,7 +18,7 @@
     "@types/redux": "^3.6.0",
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "react": "^16.13.1",
     "react-dnd": "^10.0.2",
     "react-dnd-html5-backend": "^10.0.2",
